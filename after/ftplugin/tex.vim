@@ -8,11 +8,17 @@
 "{{{ Globals
 
 if !exists('g:tex_fold_sec_char')
-    let g:tex_fold_sec_char = '➜'
+    " let g:tex_fold_sec_char = '➜'
+    let g:tex_fold_sec_char = '󰴓'
+endif
+
+if !exists('g:tex_fold_marker_char')
+    let g:tex_fold_marker_char = '󰍎'
 endif
 
 if !exists('g:tex_fold_env_char')
-    let g:tex_fold_env_char = '✎'
+    " let g:tex_fold_env_char = '✎'
+    let g:tex_fold_env_char = '󰍘'
 endif
 
 if !exists('g:tex_fold_override_foldtext')
@@ -100,7 +106,8 @@ function! TeXFoldText()
         let repl = ' ' . g:tex_fold_env_char . ' \1'
     elseif fold_line =~ '^[^%]*%[^{]*{{{'
         let pattern = '^[^{]*{' . '{{\([.]*\)'
-        let repl = '\1'
+        " let repl = '\1'
+        let repl = ' '. g:tex_fold_marker_char . '\1'
     endif
 
     let line = substitute(fold_line, pattern, repl, '') . ' '
